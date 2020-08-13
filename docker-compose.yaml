@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  ffc-grants-eoi:
+    build:
+      context: .
+      target: production
+    image: ffc-grants-eoi
+    environment: {}
