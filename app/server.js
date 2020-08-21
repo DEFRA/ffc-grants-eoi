@@ -12,16 +12,7 @@ async function createServer () {
   await server.register(inert)
   await server.register(vision)
 
-  // FIXME: list the routes dir and add each element in list
-  const routes = [].concat(
-    require('./routes/eoi'),
-    require('./routes/healthy'),
-    require('./routes/healthz'),
-    require('./routes/home'),
-    require('./routes/static')
-  )
-
-  server.route(routes)
+  server.route(require('./routes'))
 
   server.views({
     engines: {
