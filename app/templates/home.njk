@@ -1,0 +1,23 @@
+{% extends 'layout.njk' %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">FFC Grants Expressions of Interest</h1>
+
+  {{ govukWarningText({
+    text: "This is not a real service and is for demonstration and investigation purposes only.",
+    iconFallbackText: "Warning"
+  }) }}
+
+  {{ govukButton({
+    classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+    href: "/eoi",
+    isStartButton: true,
+    text: "Start new expression of interest"
+  }) }}
+
+  <h2 class="govuk-heading-m">Before you start</h2>
+  <p class="govuk-body">This is a proof of concept sample application. Actual financial aid is not available.</p>
+{% endblock %}
