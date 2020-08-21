@@ -1,15 +1,15 @@
-const Hapi = require('@hapi/hapi')
+const hapi = require('@hapi/hapi')
 const nunjucks = require('nunjucks')
 const vision = require('@hapi/vision')
 const path = require('path')
 const inert = require('@hapi/inert')
 
-async function initServer () {
-  const server = Hapi.server({
+async function createServer () {
+  const server = hapi.server({
     port: process.env.PORT
   })
 
-  await server.register(inert) // Required for static files
+  await server.register(inert)
   await server.register(vision)
 
   // FIXME: list the routes dir and add each element in list
@@ -33,13 +33,6 @@ async function initServer () {
             return template.render(context)
           }
         }
-        // prepare: (options, next) => {
-        //   options.compileOptions.environment = Nunjucks.configure([
-        //     'app/templates',
-        //     'node_modules/govuk-frontend/'
-        //   ], {})
-        //   return next()
-        // }
       }
     },
     relativeTo: __dirname,
@@ -55,4 +48,4 @@ async function initServer () {
   return server
 }
 
-module.exports = initServer
+module.exports = createServer

@@ -5,7 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "build": "npm run build:css && npm run build:assets && npm run build:js",
-    "build:assets": "cp -R node_modules/govuk-frontend/govuk/assets/ app/build",
+    "build:assets": "mkdir -p app/build/ && cp -R node_modules/govuk-frontend/govuk/assets/ app/build",
     "build:js": "mkdir -p app/build/js && cp node_modules/govuk-frontend/govuk/all.js app/build/js",
     "build:css": "node-sass --output=app/build/stylesheets --output-style=expanded app/static/stylesheets",
     "test": "jest --runInBand",

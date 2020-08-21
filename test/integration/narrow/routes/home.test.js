@@ -1,6 +1,6 @@
 describe('Home test', () => {
   let server
-  const createServer = require('../../../../app/initServer')
+  const createServer = require('../../../../app/server')
 
   beforeEach(async () => {
     server = await createServer()
