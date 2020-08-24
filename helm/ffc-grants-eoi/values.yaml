@@ -47,5 +47,4 @@ service:
 
 ingress:
   class: nginx
-  endpoint: ffc-grants
-  server: example.com
+  endpoint: ffc-grants-eoi
