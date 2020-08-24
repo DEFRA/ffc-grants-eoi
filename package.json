@@ -4,12 +4,13 @@
   "description": "For prototyping and technical spikes.",
   "main": "app/index.js",
   "scripts": {
-    "build": "npm run build:css && npm run build:assets && npm run build:js",
+    "build": "npm-run-all --serial build:css build:assets build:js",
     "build:assets": "mkdir -p app/build/ && cp -R node_modules/govuk-frontend/govuk/assets/ app/build",
     "build:js": "mkdir -p app/build/js && cp node_modules/govuk-frontend/govuk/all.js app/build/js",
     "build:css": "node-sass --output=app/build/stylesheets --output-style=expanded app/static/stylesheets",
     "test": "jest --runInBand",
-    "start:watch": "nodemon --inspect=0.0.0.0 --ext js,njk --legacy-watch app/index.js"
+    "start:watch": "npm-run-all --serial build start:nodemon",
+    "start:nodemon": "nodemon --inspect=0.0.0.0 --ext js,njk --legacy-watch app/index.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "jest-junit": "^11.1.0",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
     "standard": "^14.3.4"
   },
   "standard": {
