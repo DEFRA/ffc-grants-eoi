@@ -1,3 +1,3 @@
-@Library('defra-library@v-8') _
+@Library('defra-library@test-az-appconfig-pause') _
 
 buildNodeJs environment: 'dev'
