@@ -1,17 +1,1 @@
-{% extends "govuk/template.njk" %}
-
-{% block head %}
-  <!--[if !IE 8]><!-->
-    <link href="assets/stylesheets/application.css" rel="stylesheet" />
-  <!--<![endif]-->
-{% endblock %}
-
-{% block content %}
-  <h1 class="govuk-heading-xl">Default page template</h1>
-{% endblock %}
-
-{% block bodyEnd %}
-  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
-  <script src="/assets/js/all.js"></script>
-  <script>window.GOVUKFrontend.initAll()</script>
-{% endblock %}
+{% extends "govuk/template.njk" %} {% block head %}<link href="/static/css/application.805eea6fffb5acc1a8d3.css" rel="stylesheet">{% endblock %} {% block bodyEnd %}<script src="/static/js/bundle.805eea6fffb5acc1a8d3.js"></script>{% endblock %}
