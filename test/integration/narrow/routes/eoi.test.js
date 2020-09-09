@@ -10,7 +10,7 @@ describe('Home test', () => {
   test('GET / route returns 200', async () => {
     const options = {
       method: 'GET',
-      url: '/eoi'
+      url: '/eoi-id'
     }
 
     const response = await server.inject(options)
