@@ -28,6 +28,7 @@ async function createServer () {
     compileOptions: {
       environment: nunjucks.configure([
         path.join(__dirname, 'templates'),
+        path.join(__dirname, 'assets-dist'),
         'node_modules/govuk-frontend/'
       ])
     },
