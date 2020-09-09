@@ -20,7 +20,7 @@ async function createServer () {
         storeBlank: true,
         cookieOptions: {
           password: 'this is just a test, this is just a test, this is just a test',
-          isSecure: false // FIXME: doesn't work locally if set to true
+          isSecure: false // doesn't work locally if set to true
         }
       }
     }
