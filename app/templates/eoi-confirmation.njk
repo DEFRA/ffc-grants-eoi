@@ -1,12 +1,6 @@
 {% extends '.layout.njk' %}
 
 {% block content %}
-  <div class="govuk-body">
-    <form method="POST" action="/claim/property-type">
-      {{ govukRadios(model) }}
-      {{ govukButton({
-        text: "Save and continue"
-      }) }}
-    </form>
-  </div>
+  <p>UserId: {{ output.userId }}</p>
+  <p>Cost: {{ output.cost }}</p>
 {% endblock %}

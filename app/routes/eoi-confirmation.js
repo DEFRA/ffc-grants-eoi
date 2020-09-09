@@ -1,11 +1,15 @@
 module.exports = {
-  method: 'POST',
+  method: 'GET',
   path: '/eoi-confirmation',
   handler: (request, h) => {
-    return h.view('eoi-confirmation',
-      {
-        test: 'Hello EOI'
+    const model = {
+      output: {
+        userId: request.yar.get('userId'),
+        cost: request.yar.get('cost')
       }
-    )
+    }
+
+    console.log(model)
+    return h.view('eoi-confirmation', model)
   }
 }

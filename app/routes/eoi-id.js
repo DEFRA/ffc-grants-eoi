@@ -13,6 +13,9 @@ function createModel (userId, errorMessage) {
     },
     id: 'userId',
     name: 'userId',
+    inputmode: 'numeric',
+    pattern: '[0-9]*',
+    spellcheck: false,
     ...(userId ? { value: userId } : {}),
     ...(errorMessage ? { errorMessage: { text: errorMessage } } : {})
   }
