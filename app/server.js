@@ -12,6 +12,20 @@ async function createServer () {
   await server.register(inert)
   await server.register(vision)
 
+  // Session cache with yar
+  await server.register(
+    {
+      plugin: require('@hapi/yar'),
+      options: {
+        storeBlank: true,
+        cookieOptions: {
+          password: 'this is just a test, this is just a test, this is just a test',
+          isSecure: false // FIXME: doesn't work locally if set to true
+        }
+      }
+    }
+  )
+
   server.route(require('./routes'))
 
   server.views({
