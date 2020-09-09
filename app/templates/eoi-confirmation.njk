@@ -1,6 +1,7 @@
 {% extends '.layout.njk' %}
 
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
 {% block content %}
-  <p>UserId: {{ output.userId }}</p>
-  <p>Cost: {{ output.cost }}</p>
+  {{ govukPanel(output) }}
 {% endblock %}
