@@ -4,7 +4,7 @@ module.exports = {
   options: {
     handler: {
       directory: {
-        path: ['app/assets-dist']
+        path: ['app/assets/dist']
       }
     },
     cache: {
