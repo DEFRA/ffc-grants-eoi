@@ -12,6 +12,20 @@ async function createServer () {
   await server.register(inert)
   await server.register(vision)
 
+  // Session cache with yar
+  await server.register(
+    {
+      plugin: require('@hapi/yar'),
+      options: {
+        storeBlank: true,
+        cookieOptions: {
+          password: 'this is just a test, this is just a test, this is just a test',
+          isSecure: false // doesn't work locally if set to true
+        }
+      }
+    }
+  )
+
   server.route(require('./routes'))
 
   server.views({
@@ -28,7 +42,7 @@ async function createServer () {
     compileOptions: {
       environment: nunjucks.configure([
         path.join(__dirname, 'templates'),
-        path.join(__dirname, 'assets-dist'),
+        path.join(__dirname, 'assets', 'dist'),
         'node_modules/govuk-frontend/'
       ])
     },

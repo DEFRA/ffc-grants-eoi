@@ -8,7 +8,7 @@ const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV ===
 console.log(`Running webpack in ${isDev ? 'development' : 'production'} mode`)
 
 module.exports = {
-  entry: './app/assets-src/index.js',
+  entry: './app/assets/src/index.js',
   mode: isDev ? 'development' : 'production',
   module: {
     rules: [
@@ -57,7 +57,7 @@ module.exports = {
   },
   output: {
     filename: 'js/bundle.[hash].js',
-    path: path.resolve(__dirname, 'app/assets-dist'),
+    path: path.resolve(__dirname, 'app/assets/dist'),
     publicPath: '/assets/'
   },
   plugins: [
@@ -65,7 +65,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false,
       filename: '.layout.njk',
-      template: 'app/assets-src/layout.njk'
+      template: 'app/assets/src/layout.njk'
     }),
     new MiniCssExtractPlugin({
       filename: 'css/application.[hash].css'

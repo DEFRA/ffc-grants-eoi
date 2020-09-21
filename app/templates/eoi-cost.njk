@@ -1,0 +1,15 @@
+{% extends '.layout.njk' %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  <div class="govuk-body">
+    <form method="POST" action="/eoi-cost" novalidate>
+      {{ govukInput(input) }}
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+  </div>
+{% endblock %}
