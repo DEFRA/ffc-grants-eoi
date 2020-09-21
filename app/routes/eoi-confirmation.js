@@ -14,7 +14,7 @@ module.exports = {
     console.log(`ConfirmationID: ${confirmationId}`)
 
     // Send details to eligibility microservice, don't wait for response
-    wreck.post('http://ffc-grants-eligibility/application', {
+    wreck.post('http://ffc-grants-eligibility.ffc-grants/application', {
       payload: {
         confirmationId: confirmationId,
         cost: request.yar.get('userId'),
