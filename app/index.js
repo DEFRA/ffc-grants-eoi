@@ -9,7 +9,8 @@ process.on('unhandledRejection', (err) => {
 const initialise = async () => {
   const server = await createServer()
   await server.start()
-  console.log('# Hapi server started successfully')
+  console.log('Server running on %s', server.info.uri)
+  console.log(`# Hapi server started successfully on ${server.info.uri}`)
 }
 
 initialise()
