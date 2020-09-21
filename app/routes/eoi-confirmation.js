@@ -15,11 +15,11 @@ module.exports = {
 
     // Send details to eligibility microservice, don't wait for response
     wreck.post('http://ffc-grants-eligibility.ffc-grants/application', {
-      payload: {
+      payload: JSON.stringify({
         confirmationId: confirmationId,
         cost: request.yar.get('userId'),
         userId: request.yar.get('userId')
-      }
+      })
     })
 
     return h.view('eoi-confirmation', {
