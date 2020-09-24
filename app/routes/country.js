@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 function createModel (errorMessage) {
   return {
-    input: {
+    radios: {
       classes: 'govuk-radios--inline',
       idPrefix: 'projectCountry',
       name: 'projectCountry',

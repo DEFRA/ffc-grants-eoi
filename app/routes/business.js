@@ -2,16 +2,12 @@ const Joi = require('joi')
 
 function createModel (businessName, errorMessage) {
   return {
+    heading: 'Business Details',
     input: {
       label: {
-        text: 'Business Details',
-        classes: 'govuk-label--l',
-        isPageHeading: true
-      },
-      classes: 'govuk-!-width-three-quarters',
-      hint: {
         text: 'Business name'
       },
+      classes: 'govuk-!-width-three-quarters',
       id: 'businessName',
       name: 'businessName',
       ...(businessName ? { value: businessName } : {}),

@@ -21,12 +21,11 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-body">
-    <form method="POST" action="/business" novalidate>
-      {{ govukInput(input) }}
-      {{ govukButton({
-        text: "Save and continue"
-      }) }}
-    </form>
-  </div>
+  <h1 class="govuk-heading-l">{{ heading }}</h1>
+  <form method="POST" action="/business" novalidate>
+    {{ govukInput(input) }}
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
 {% endblock %}
