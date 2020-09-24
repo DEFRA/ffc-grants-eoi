@@ -3,6 +3,6 @@ module.exports = {
   path: '/',
   handler: (request, h) => {
     request.yar.reset()
-    return h.view('home')
+    return h.view('eoi')
   }
 }

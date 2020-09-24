@@ -26,18 +26,18 @@ function createModel (userId, errorMessage) {
 module.exports = [
   {
     method: 'GET',
-    path: '/eoi-id',
-    handler: (request, h) => h.view('eoi-id', createModel(request.yar.get('userId'), null))
+    path: '/country',
+    handler: (request, h) => h.view('country', createModel(request.yar.get('userId'), null))
   },
   {
     method: 'POST',
-    path: '/eoi-id',
+    path: '/country',
     options: {
       validate: {
         payload: Joi.object({
           userId: Joi.string().length(5).pattern(/^[0-9]+$/).required()
         }),
-        failAction: (request, h) => h.view('eoi-id', createModel(request.payload.userId, 'Enter a 5 digit number')).takeover()
+        failAction: (request, h) => h.view('country', createModel(request.payload.userId, 'Enter a 5 digit number')).takeover()
       },
       handler: (request, h) => {
         request.yar.set('userId', request.payload.userId)
