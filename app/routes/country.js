@@ -1,23 +1,28 @@
 const Joi = require('joi')
 
-function createModel (userId, errorMessage) {
+function createModel (errorMessage) {
   return {
     input: {
-      label: {
-        text: 'What is your magic number?',
-        classes: 'govuk-label--l',
-        isPageHeading: true
+      classes: 'govuk-radios--inline',
+      idPrefix: 'projectCountry',
+      name: 'projectCountry',
+      fieldset: {
+        legend: {
+          text: 'Is the planned project in England?',
+          isPageHeading: true,
+          classes: 'govuk-fieldset__legend--l'
+        }
       },
-      classes: 'govuk-input--width-5',
-      hint: {
-        text: 'Must be 5 digits long'
-      },
-      id: 'userId',
-      name: 'userId',
-      inputmode: 'numeric',
-      pattern: '[0-9]*',
-      spellcheck: false,
-      ...(userId ? { value: userId } : {}),
+      items: [
+        {
+          value: 'yes',
+          text: 'Yes'
+        },
+        {
+          value: 'no',
+          text: 'No'
+        }
+      ],
       ...(errorMessage ? { errorMessage: { text: errorMessage } } : {})
     }
   }
@@ -27,7 +32,7 @@ module.exports = [
   {
     method: 'GET',
     path: '/country',
-    handler: (request, h) => h.view('country', createModel(request.yar.get('userId'), null))
+    handler: (request, h) => h.view('country', createModel(null))
   },
   {
     method: 'POST',
@@ -35,13 +40,17 @@ module.exports = [
     options: {
       validate: {
         payload: Joi.object({
-          userId: Joi.string().length(5).pattern(/^[0-9]+$/).required()
+          projectCountry: Joi.string().required()
         }),
-        failAction: (request, h) => h.view('country', createModel(request.payload.userId, 'Enter a 5 digit number')).takeover()
+        failAction: (request, h) => h.view('country', createModel('Select yes if the planned project is in England')).takeover()
       },
       handler: (request, h) => {
-        request.yar.set('userId', request.payload.userId)
-        return h.redirect('./eoi-cost')
+        if (request.payload.projectCountry === 'yes') {
+          request.yar.set('projectCountry', request.payload.projectCountry)
+          return h.redirect('./eoi-cost')
+        }
+
+        return h.redirect('./not-eligible')
       }
     }
   }

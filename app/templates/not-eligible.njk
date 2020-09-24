@@ -1,9 +1,7 @@
 {% extends '.layout.njk' %}
 
-{% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% block header %}
   {{ govukHeader({
@@ -16,17 +14,16 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/"
+    href: "/country"
   }) }}
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-body">
-    <form method="POST" action="/country" novalidate>
-      {{ govukRadios(input) }}
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-    </form>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">You cannot apply for a large grant</h1>
+    <p class="govuk-body">This is only for projects in England.</p>
+    <p class="govuk-body">Scotland, Wales and Northern Ireland have similar grants available.</p>
   </div>
+</div>
 {% endblock %}
