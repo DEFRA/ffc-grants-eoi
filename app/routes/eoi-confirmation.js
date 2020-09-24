@@ -1,6 +1,6 @@
-const wreck = require('@hapi/wreck').defaults({
-  json: true
-})
+// const wreck = require('@hapi/wreck').defaults({
+//   json: true
+// })
 
 module.exports = {
   method: 'GET',
@@ -14,13 +14,13 @@ module.exports = {
     console.log(`ConfirmationID: ${confirmationId}`)
 
     // Send details to eligibility microservice, don't wait for response
-    wreck.post('http://ffc-grants-eligibility.ffc-grants/application', {
-      payload: JSON.stringify({
-        confirmationId: confirmationId.toString(),
-        cost: request.yar.get('cost'),
-        userId: request.yar.get('userId')
-      })
-    })
+    // wreck.post('http://ffc-grants-eligibility.ffc-grants/application', {
+    //   payload: JSON.stringify({
+    //     confirmationId: confirmationId.toString(),
+    //     cost: request.yar.get('cost'),
+    //     userId: request.yar.get('userId')
+    //   })
+    // })
 
     return h.view('eoi-confirmation', {
       output: {

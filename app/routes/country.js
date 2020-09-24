@@ -47,7 +47,7 @@ module.exports = [
       handler: (request, h) => {
         if (request.payload.projectCountry === 'yes') {
           request.yar.set('projectCountry', request.payload.projectCountry)
-          return h.redirect('./eoi-cost')
+          return h.redirect('./business')
         }
 
         return h.redirect('./not-eligible')
