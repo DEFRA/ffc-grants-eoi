@@ -2,8 +2,8 @@ const Joi = require('joi')
 
 function createModel (businessName, errorMessage) {
   return {
-    heading: 'Business Details',
-    input: {
+    heading: 'Business details',
+    nameInput: {
       label: {
         text: 'Business name'
       },
@@ -34,7 +34,7 @@ module.exports = [
       },
       handler: (request, h) => {
         request.yar.set('businessName', request.payload.businessName)
-        return h.redirect('./eoi-confirmation')
+        return h.redirect('./contact-details')
       }
     }
   }

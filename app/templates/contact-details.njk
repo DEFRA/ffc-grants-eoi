@@ -16,14 +16,14 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/country"
+    href: "/business"
   }) }}
 {% endblock %}
 
 {% block content %}
   <h1 class="govuk-heading-l">{{ heading }}</h1>
-  <form method="POST" action="/business" novalidate>
-    {{ govukInput(nameInput) }}
+  <form method="POST" action="/contact-details" novalidate>
+    {{ govukInput(emailInput) }}
     {{ govukButton({
       text: "Save and continue"
     }) }}

@@ -4,7 +4,7 @@
 
 module.exports = {
   method: 'GET',
-  path: '/eoi-confirmation',
+  path: '/confirmation',
   handler: (request, h) => {
     const confirmationId = Math.floor(Math.random() * 100000000)
 
@@ -22,7 +22,7 @@ module.exports = {
     //   })
     // })
 
-    return h.view('eoi-confirmation', {
+    return h.view('confirmation', {
       output: {
         titleText: 'Application complete',
         html: `Your reference number<br><strong>${confirmationId}</strong>`
