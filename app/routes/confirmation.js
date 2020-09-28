@@ -4,13 +4,14 @@ const wreck = require('@hapi/wreck').defaults({
 
 module.exports = {
   method: 'GET',
-  path: '/eoi-confirmation',
+  path: '/confirmation',
   handler: (request, h) => {
     const confirmationId = Math.floor(Math.random() * 100000000)
 
     console.log('New application:')
-    console.log(`UserID: ${request.yar.get('userId')}`)
-    console.log(`Cost: ${request.yar.get('cost')}`)
+    console.log(`In England: ${request.yar.get('inEngland')}`)
+    console.log(`Business Name: ${request.yar.get('businessName')}`)
+    console.log(`Email Address: ${request.yar.get('emailAddress')}`)
     console.log(`ConfirmationID: ${confirmationId}`)
 
     // Send details to eligibility microservice, don't wait for response
@@ -22,9 +23,9 @@ module.exports = {
       })
     })
 
-    return h.view('eoi-confirmation', {
+    return h.view('confirmation', {
       output: {
-        titleText: 'Application complete',
+        titleText: 'Application submitted',
         html: `Your reference number<br><strong>${confirmationId}</strong>`
       }
     })

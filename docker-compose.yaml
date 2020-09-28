@@ -6,4 +6,5 @@ services:
       context: .
       target: production
     image: ffc-grants-eoi
-    environment: {}
+    environment:
+      NODE_ENV: development

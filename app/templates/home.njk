@@ -2,22 +2,39 @@
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: "Apply for a large grant",
+        href: "/"
+      }
+    ]
+  }) }}
+{% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">FFC Grants Expressions of Interest</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Apply for a large grant</h1>
 
-  {{ govukWarningText({
-    text: "This is not a real service and is for demonstration and investigation purposes only.",
-    iconFallbackText: "Warning"
-  }) }}
+    {{ govukWarningText({
+      text: "This is not a real service and is for demonstration purposes only. Actual financial aid is not available.",
+      iconFallbackText: "Warning"
+    }) }}
 
-  {{ govukButton({
-    classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
-    href: "/eoi-id",
-    isStartButton: true,
-    text: "Start new expression of interest"
-  }) }}
-
-  <h2 class="govuk-heading-m">Before you start</h2>
-  <p class="govuk-body">This is a proof of concept sample application. Actual financial aid is not available.</p>
+    {{ govukButton({
+      classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+      href: "/country",
+      isStartButton: true,
+      text: "Start now"
+    }) }}
+  </div>
+</div>
 {% endblock %}
