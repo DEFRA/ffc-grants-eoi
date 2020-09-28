@@ -1,7 +1,8 @@
 {% extends '.layout.njk' %}
 
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block beforeContent %}
   {{ govukBreadcrumbs({
@@ -18,6 +19,7 @@
   }) }}
 {% endblock %}
 
+
 {% block content %}
-  {{ govukPanel(output) }}
+{{ govukErrorSummary(errorMessage) }}
 {% endblock %}

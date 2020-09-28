@@ -1,6 +1,6 @@
 {% extends '.layout.njk' %}
 
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 
 {% block beforeContent %}
@@ -19,5 +19,6 @@
 {% endblock %}
 
 {% block content %}
-  {{ govukPanel(output) }}
+  <h1 class="govuk-heading-l">Application details</h1>
+  {{ govukSummaryList(details) }}
 {% endblock %}
