@@ -14,8 +14,6 @@ module.exports = {
     console.log(`Email Address: ${request.yar.get('emailAddress')}`)
     console.log(`ConfirmationID: ${confirmationId}`)
 
-    console.log(process.env)
-
     // Send details to eligibility microservice, don't wait for response
     wreck.post('http://ffc-grants-eligibility.ffc-grants/application', {
       payload: JSON.stringify({
