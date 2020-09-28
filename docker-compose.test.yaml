@@ -8,8 +8,8 @@ services:
     build:
       target: development
     image: ffc-grants-eoi-development
-    command: npm run test
     environment:
       NODE_ENV: test
+    command: npm run test
     volumes:
       - ./test-output/:/home/node/test-output/
