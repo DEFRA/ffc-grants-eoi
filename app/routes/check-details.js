@@ -4,10 +4,10 @@ function createModel (applicationDetails) {
       rows: [
         {
           key: {
-            text: 'Application ID'
+            text: 'Confirmation ID'
           },
           value: {
-            text: applicationDetails.applicationId
+            text: applicationDetails.confirmationIdId
           }
         },
         {
@@ -49,7 +49,7 @@ module.exports = [
 
       if (foundApplication) {
         const applicationDetails = {
-          applicationId: '1234',
+          confirmationIdId: '1234',
           businessName: 'My Lovely Business',
           emailAddress: 'me@me.com',
           inEngland: true
@@ -58,7 +58,7 @@ module.exports = [
       }
 
       return h.view('not-found', {
-        errorMessage: { titleText: `Application ${request.query.applicationId} not found` }
+        errorMessage: { titleText: `Application with confirmation ID ${request.query.confirmationId} not found` }
       })
     }
   }
