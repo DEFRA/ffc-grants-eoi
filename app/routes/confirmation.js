@@ -21,7 +21,8 @@ module.exports = {
         cost: request.yar.get('cost'),
         userId: request.yar.get('userId')
       })
-    })
+    }).then(result => console.log(`Success POSTing application ${result}`))
+      .catch(error => console.log(`Error POSTing application ${error}`))
 
     return h.view('confirmation', {
       output: {
