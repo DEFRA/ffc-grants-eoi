@@ -39,6 +39,7 @@ config.isProd = process.env.NODE_ENV === 'production'
 
 module.exports = (async function createConnections () {
   const credentials = config.isProd ? await auth.loginWithVmMSI({ resource: 'https://servicebus.azure.net' }) : undefined
+  console.log(`CREDS: ${credentials}`)
   messageService = new MessageService(credentials)
   return messageService
 }())
