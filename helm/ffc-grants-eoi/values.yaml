@@ -6,6 +6,10 @@ image: ffc-grants-eoi
 
 labels: {}
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: ffc-grants-eoi-config-map
 
