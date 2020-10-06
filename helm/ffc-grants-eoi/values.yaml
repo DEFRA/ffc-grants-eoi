@@ -27,6 +27,8 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
+  messageQueueHost: dummy
+  eoiQueueAddress: eoi
 
 livenessProbe:
   path: /healthz
