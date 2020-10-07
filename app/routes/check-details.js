@@ -1,3 +1,7 @@
+const wreck = require('@hapi/wreck').defaults({
+  json: true
+})
+
 function createModel (applicationDetails) {
   return {
     details: {
@@ -43,23 +47,23 @@ module.exports = [
   {
     method: 'GET',
     path: '/check-details',
-    handler: (request, h) => {
-      // FIXME: retrieve application details
-      const foundApplication = true
-
-      if (foundApplication) {
-        const applicationDetails = {
-          confirmationIdId: '1234',
-          businessName: 'My Lovely Business',
-          emailAddress: 'me@me.com',
-          inEngland: true
-        }
-        return h.view('check-details', createModel(applicationDetails))
+    handler: async (request, h) => {
+      try {
+        const { payload } = await wreck.get(`http://ffc-grants-eligibility.ffc-grants/application?confirmationId=${request.query.confirmationId}`)
+        console.log(payload)
+      } catch (err) {
+        return h.view('not-found', {
+          errorMessage: { titleText: `Application with confirmation ID ${request.query.confirmationId} not found` }
+        })
       }
 
-      return h.view('not-found', {
-        errorMessage: { titleText: `Application with confirmation ID ${request.query.confirmationId} not found` }
-      })
+      const applicationDetails = {
+        confirmationIdId: '1234',
+        businessName: 'My Lovely Business',
+        emailAddress: 'me@me.com',
+        inEngland: true
+      }
+      return h.view('check-details', createModel(applicationDetails))
     }
   }
 ]
