@@ -14,23 +14,23 @@ process.on('SIGINT', async () => {
 
 class MessageService {
   constructor (credentials) {
-    // this.publishClaim = this.publishClaim.bind(this)
-    // this.closeConnections = this.closeConnections.bind(this)
-    this.mySender = new MessageSender('my-queue-sender', config, credentials)
+    this.publishEOI = this.publishEOI.bind(this)
+    this.closeConnections = this.closeConnections.bind(this)
+    this.eoiSender = new MessageSender('eoi-queue-sender', config, credentials)
   }
 
-  // async closeConnections () {
-  //   await this.claimSender.closeConnection()
-  // }
+  async closeConnections () {
+    await this.eoiSender.closeConnection()
+  }
 
-  // async publishClaim (claim) {
-  //   try {
-  //     return await this.claimSender.sendMessage(claim)
-  //   } catch (err) {
-  //     console.log(err)
-  //     throw err
-  //   }
-  // }
+  async publishEOI (eoi) {
+    try {
+      return await this.eoiSender.sendMessage(eoi)
+    } catch (err) {
+      console.log(err)
+      throw err
+    }
+  }
 }
 
 let messageService
@@ -39,7 +39,6 @@ config.isProd = process.env.NODE_ENV === 'production'
 
 module.exports = (async function createConnections () {
   const credentials = config.isProd ? await auth.loginWithVmMSI({ resource: 'https://servicebus.azure.net' }) : undefined
-  console.log(`CREDS: ${credentials}`)
   messageService = new MessageService(credentials)
   return messageService
 }())

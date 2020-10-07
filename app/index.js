@@ -7,14 +7,12 @@ process.on('unhandledRejection', (err) => {
 })
 
 const initialise = async () => {
+  console.log('# Starting messageService')
+  await require('./services/message-service')
+
   const server = await createServer()
   await server.start()
   console.log(`# Hapi server started successfully on ${server.info.uri}`)
-  console.log('Getting messageService')
-  const messageService = await require('./services/message-service')
-  console.log(messageService)
-  console.log('Sending message')
-  await messageService.mySender.sendMessage('THIS IS A TEST MESSAGE YEAH')
 }
 
 initialise()

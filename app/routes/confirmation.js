@@ -1,11 +1,7 @@
-const wreck = require('@hapi/wreck').defaults({
-  json: true
-})
-
 module.exports = {
   method: 'GET',
   path: '/confirmation',
-  handler: (request, h) => {
+  handler: async (request, h) => {
     const confirmationId = Math.floor(Math.random() * 100000000)
 
     console.log('New application:')
@@ -14,19 +10,28 @@ module.exports = {
     console.log(`Email Address: ${request.yar.get('emailAddress')}`)
     console.log(`ConfirmationID: ${confirmationId}`)
 
-    // Send details to eligibility microservice, don't wait for response
-    wreck.post('http://ffc-grants-eligibility.ffc-grants/application', {
-      payload: JSON.stringify({
-        confirmationId: confirmationId.toString(),
-        cost: request.yar.get('cost'),
-        userId: request.yar.get('userId')
+    const messageService = await require('./services/message-service')
+
+    try {
+      await messageService.publishEOI(
+        JSON.stringify({
+          confirmationId: confirmationId.toString(),
+          cost: request.yar.get('cost'),
+          userId: request.yar.get('userId')
+        })
+      )
+    } catch (err) {
+      return h.view('confirmation', {
+        output: {
+          titleText: 'EOI not submitted',
+          html: 'Error sending EOI'
+        }
       })
-    }).then(result => console.log(`Success POSTing application ${result}`))
-      .catch(error => console.log(`Error POSTing application ${error}`))
+    }
 
     return h.view('confirmation', {
       output: {
-        titleText: 'Application submitted',
+        titleText: 'EOI submitted',
         html: `Your reference number<br><strong>${confirmationId}</strong>`
       }
     })
