@@ -30,10 +30,13 @@ module.exports = {
       })
     }
 
+    const httpPrefix = process.env.NODE_ENV === 'production' ? 'https' : 'http'
+
     return h.view('confirmation', {
       output: {
         titleText: 'EOI submitted',
-        html: `Your reference number<br><strong>${confirmationId}</strong>`
+        html: `Your reference number<br><strong>${confirmationId}</strong>`,
+        link: `${httpPrefix}://${process.env.SITE_URL}/check-details?confirmationId=${confirmationId}`
       }
     })
   }
