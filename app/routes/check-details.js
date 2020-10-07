@@ -7,36 +7,24 @@ function createModel (applicationDetails) {
     details: {
       rows: [
         {
-          key: {
-            text: 'Confirmation ID'
-          },
-          value: {
-            text: applicationDetails.confirmationIdId
-          }
+          key: { text: 'Confirmation ID' },
+          value: { text: applicationDetails.confirmationId }
         },
         {
-          key: {
-            text: 'Business name'
-          },
-          value: {
-            text: applicationDetails.businessName
-          }
+          key: { text: 'Business name' },
+          value: { text: applicationDetails.businessName }
         },
         {
-          key: {
-            text: 'Business in England'
-          },
-          value: {
-            text: applicationDetails.inEngland ? 'Yes' : 'No'
-          }
+          key: { text: 'Business in England' },
+          value: { text: applicationDetails.inEngland ? 'Yes' : 'No' }
         },
         {
-          key: {
-            text: 'Email address'
-          },
-          value: {
-            text: applicationDetails.emailAddress
-          }
+          key: { text: 'Email address' },
+          value: { text: applicationDetails.emailAddress }
+        },
+        {
+          key: { text: 'Created at' },
+          value: { text: applicationDetails.createdAt }
         }
       ]
     }
@@ -50,20 +38,12 @@ module.exports = [
     handler: async (request, h) => {
       try {
         const { payload } = await wreck.get(`http://ffc-grants-eligibility.ffc-grants/application?confirmationId=${request.query.confirmationId}`)
-        console.log(payload)
+        return h.view('check-details', createModel(payload))
       } catch (err) {
         return h.view('not-found', {
           errorMessage: { titleText: `Application with confirmation ID ${request.query.confirmationId} not found` }
         })
       }
-
-      const applicationDetails = {
-        confirmationIdId: '1234',
-        businessName: 'My Lovely Business',
-        emailAddress: 'me@me.com',
-        inEngland: true
-      }
-      return h.view('check-details', createModel(applicationDetails))
     }
   }
 ]
