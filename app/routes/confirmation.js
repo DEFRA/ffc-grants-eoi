@@ -10,14 +10,15 @@ module.exports = {
     console.log(`Email Address: ${request.yar.get('emailAddress')}`)
     console.log(`ConfirmationID: ${confirmationId}`)
 
-    const messageService = await require('./services/message-service')
+    const messageService = await require('../services/message-service')
 
     try {
       await messageService.publishEOI(
         JSON.stringify({
           confirmationId: confirmationId.toString(),
-          cost: request.yar.get('cost'),
-          userId: request.yar.get('userId')
+          inEngland: request.yar.get('inEngland') === 'yes',
+          businessName: request.yar.get('businessName'),
+          emailAddress: request.yar.get('emailAddress')
         })
       )
     } catch (err) {
