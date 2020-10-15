@@ -14,7 +14,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/country"
+    href: backLink
   }) }}
 {% endblock %}
 
@@ -22,8 +22,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">You cannot apply for a large grant</h1>
-    <p class="govuk-body">This is only for projects in England.</p>
-    <p class="govuk-body">Scotland, Wales and Northern Ireland have similar grants available.</p>
+    {% for s in sentences %}
+      <p class="govuk-body">{{ s }}</p>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

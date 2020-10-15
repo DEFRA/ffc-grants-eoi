@@ -2,6 +2,7 @@ const Joi = require('joi')
 
 function createModel (emailAddress, errorMessage) {
   return {
+    backLink: '/business',
     heading: 'Your contact details',
     emailInput: {
       label: {

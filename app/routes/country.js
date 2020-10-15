@@ -2,6 +2,7 @@ const Joi = require('joi')
 
 function createModel (errorMessage) {
   return {
+    backLink: '/arable',
     radios: {
       classes: 'govuk-radios--inline',
       idPrefix: 'inEngland',
@@ -28,6 +29,16 @@ function createModel (errorMessage) {
   }
 }
 
+function createModelNotEligible () {
+  return {
+    backLink: '/country',
+    sentences: [
+      'This is only for projects in England.',
+      'Scotland, Wales and Northern Ireland have similar grants available.'
+    ]
+  }
+}
+
 module.exports = [
   {
     method: 'GET',
@@ -50,7 +61,7 @@ module.exports = [
           return h.redirect('./business')
         }
 
-        return h.redirect('./not-eligible')
+        return h.view('not-eligible', createModelNotEligible())
       }
     }
   }

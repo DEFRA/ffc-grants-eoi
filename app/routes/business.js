@@ -2,6 +2,7 @@ const Joi = require('joi')
 
 function createModel (businessName, errorMessage) {
   return {
+    backLink: '/country',
     heading: 'Business details',
     nameInput: {
       label: {
