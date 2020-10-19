@@ -37,7 +37,7 @@ module.exports = [
     path: '/check-details',
     handler: async (request, h) => {
       try {
-        const { payload } = await wreck.get(`http://ffc-grants-eligibility.ffc-grants/application?confirmationId=${request.query.confirmationId}`)
+        const { payload } = await wreck.get(`http://${process.env.ELIGIBILITY_URL}/application?confirmationId=${request.query.confirmationId}`)
         return h.view('check-details', createModel(payload))
       } catch (err) {
         return h.view('not-found', {

@@ -13,3 +13,4 @@ services:
       MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD:-notset}
       MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER:-notset}
       SITE_URL: localhost:3000
+      ELIGIBILITY_URL: ffc-grants-eligibility:3000
