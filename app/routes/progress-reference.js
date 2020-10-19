@@ -10,15 +10,20 @@ module.exports = [
 
       const inEngland = request.yar.get('inEngland')
       const businessName = request.yar.get('businessName')
-      const emailAddress = request.yar.get('emailAddress')
+      const emailAddress = request.query.email
+
+      const httpPrefix = process.env.NODE_ENV === 'production' ? 'https' : 'http'
+      const magicLink = `${httpPrefix}://${process.env.SITE_URL}/check-details?confirmationId=${confirmationId}`
 
       try {
         await messageService.publishEOI(
           JSON.stringify({
-            confirmationId: confirmationId,
+            confirmationId,
+            magicLink,
+            inProgress: true,
             ...(inEngland ? { inEngland: 'yes' } : {}),
             ...(businessName ? { businessName: businessName } : {}),
-            ...(emailAddress ? { emailAddress: emailAddress } : {})
+            ...(emailAddress ? { progressEmailAddress: emailAddress } : {})
           })
         )
       } catch (err) {
@@ -30,14 +35,20 @@ module.exports = [
         })
       }
 
-      const httpPrefix = process.env.NODE_ENV === 'production' ? 'https' : 'http'
-      const magicLink = `${httpPrefix}://${process.env.SITE_URL}/check-details?confirmationId=${confirmationId}`
-
-      return h.view('progress-reference', {
-        backLink: '/',
-        progressReference: confirmationId,
-        magicLink: magicLink
-      })
+      if (emailAddress) {
+        return h.view('progress-email', {
+          emailAddress,
+          magicLink,
+          backLink: '/',
+          progressReference: confirmationId
+        })
+      } else {
+        return h.view('progress-reference', {
+          magicLink,
+          backLink: '/',
+          progressReference: confirmationId
+        })
+      }
     }
   }
 ]

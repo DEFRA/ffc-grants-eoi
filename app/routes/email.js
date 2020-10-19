@@ -38,8 +38,7 @@ module.exports = [
         failAction: (request, h) => h.view('email', createModel(request.payload.emailAddress, 'Enter your email address')).takeover()
       },
       handler: (request, h) => {
-        request.yar.set('emailAddress', request.payload.emailAddress)
-        return h.redirect('./progress-reference')
+        return h.redirect(`./progress-reference?email=${request.payload.emailAddress}`)
       }
     }
   }
