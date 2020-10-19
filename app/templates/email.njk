@@ -1,9 +1,9 @@
 {% extends '.layout.njk' %}
 
+{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% block header %}
   {{ govukHeader({
@@ -23,16 +23,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form method="POST" action="/country" novalidate>
-        {{ govukRadios(radios) }}
+      <h1 class="govuk-heading-l">{{ heading }}</h1>
+      <form method="POST" action="/email" novalidate>
+        {{ govukInput(emailInput) }}
         {{ govukButton({
-          text: "Continue"
+          text: "Save and continue"
         }) }}
       </form>
-    </div>
-    <div class="govuk-grid-column-one-third" style="background:#f3f2f1; padding-top:15px;">
-      <h1 class="govuk-heading-m">Return to this later</h1>
-      <p class="govuk-body"><a href="/save-progress?back=country" class="govuk-link">Save my progress</a></p>
     </div>
   </div>
 {% endblock %}

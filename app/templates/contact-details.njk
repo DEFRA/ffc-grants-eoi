@@ -21,11 +21,19 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">{{ heading }}</h1>
-  <form method="POST" action="/contact-details" novalidate>
-    {{ govukInput(emailInput) }}
-    {{ govukButton({
-      text: "Save and continue"
-    }) }}
-  </form>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ heading }}</h1>
+      <form method="POST" action="/contact-details" novalidate>
+        {{ govukInput(emailInput) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+    <div class="govuk-grid-column-one-third" style="background:#f3f2f1; padding-top:15px;">
+      <h1 class="govuk-heading-m">Return to this later</h1>
+      <p class="govuk-body"><a href="/save-progress?back=contact-details" class="govuk-link">Save my progress</a></p>
+    </div>
+  </div>
 {% endblock %}

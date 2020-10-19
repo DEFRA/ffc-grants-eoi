@@ -21,10 +21,18 @@
 {% endblock %}
 
 {% block content %}
-  <form method="POST" action="/arable" novalidate>
-    {{ govukRadios(radios) }}
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-  </form>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="POST" action="/arable" novalidate>
+        {{ govukRadios(radios) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+    <div class="govuk-grid-column-one-third" style="background:#f3f2f1; padding-top:15px;">
+      <h1 class="govuk-heading-m">Return to this later</h1>
+      <p class="govuk-body"><a href="/save-progress?back=arable" class="govuk-link">Save my progress</a></p>
+    </div>
+  </div>
 {% endblock %}
