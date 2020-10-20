@@ -14,12 +14,13 @@ module.exports = [
 
       const httpPrefix = process.env.NODE_ENV === 'production' ? 'https' : 'http'
       const magicLink = `${httpPrefix}://${process.env.SITE_URL}/check-details?confirmationId=${confirmationId}`
+      const emailLink = `${httpPrefix}://${process.env.SITE_URL}/load-application?application=${confirmationId}`
 
       try {
         await messageService.publishEOI(
           JSON.stringify({
             confirmationId,
-            magicLink,
+            emailLink,
             inProgress: true,
             ...(inEngland ? { inEngland: 'yes' } : {}),
             ...(businessName ? { businessName: businessName } : {}),
@@ -39,6 +40,7 @@ module.exports = [
         return h.view('progress-email', {
           emailAddress,
           magicLink,
+          emailLink,
           backLink: '/',
           progressReference: confirmationId
         })
