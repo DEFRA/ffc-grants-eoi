@@ -1,3 +1,3 @@
-@Library('defra-library@v-8') _
+@Library('defra-library@npm-not-dev') _
 
 buildNodeJs environment: 'dev'
