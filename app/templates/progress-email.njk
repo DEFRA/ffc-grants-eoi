@@ -1,9 +1,8 @@
 {% extends '.layout.njk' %}
 
-{% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% block header %}
   {{ govukHeader({
@@ -21,14 +20,12 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <form method="POST" action="/arable" novalidate>
-        {{ govukRadios(radios) }}
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-    </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Email sent</h1>
+    <p class="govuk-body">An email has been sent to {{ emailAddress }} with reference {{ progressReference }}</p>
+    <p class="govuk-body"><a href={{ magicLink }}>Check details link</a></p>
+    <p class="govuk-body"><a href={{ emailLink }}>Email link</a></p>
   </div>
+</div>
 {% endblock %}

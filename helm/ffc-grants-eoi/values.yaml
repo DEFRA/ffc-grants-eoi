@@ -33,6 +33,7 @@ container:
   port: 3000
   messageQueueHost: dummy
   eoiQueueAddress: eoi
+  eligibilityUrl: ffc-grants-eligibility.ffc-grants
 
 livenessProbe:
   path: /healthz

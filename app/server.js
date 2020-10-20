@@ -33,7 +33,6 @@ async function createServer () {
       njk: {
         compile: (src, options) => {
           const template = nunjucks.compile(src, options.environment)
-
           return context => template.render(context)
         }
       }

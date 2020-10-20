@@ -3,6 +3,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 
 {% block beforeContent %}
   {{ govukBreadcrumbs({
@@ -35,6 +36,22 @@
       isStartButton: true,
       text: button.text
     }) }}
+  </div>
+  <div class="govuk-grid-column-one-third" style="background:#f3f2f1; padding-top:20px">
+    <h1 class="govuk-heading-m">Return to an application</h1>
+    <form method="POST" action="/load-application" novalidate>
+    {{ govukInput({
+      id: "application",
+      name: "application",
+      label: {
+        text: "Enter your reference"
+      }
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    </form>
   </div>
 </div>
 {% endblock %}
