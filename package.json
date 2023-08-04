@@ -32,7 +32,7 @@
     "@hapi/wreck": "^17.0.0",
     "@hapi/yar": "^10.1.0",
     "govuk-frontend": "^3.8.1",
-    "joi": "^17.2.1",
+    "joi": "^17.9.2",
     "nunjucks": "^3.2.2"
   },
   "devDependencies": {
